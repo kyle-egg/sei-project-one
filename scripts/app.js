@@ -18,23 +18,11 @@ let hooverArray = [2, 3, 4, 5, 6, 7, 8]
 const hooverStartPosition = 2
 const hooverEndPositionEasy = 9
 
-console.log(hooverArray)
 
 // * Functions
 
-function addDog(dogPosition) {
-  cells[dogPosition].classList.add('dog')
-}
-
 function removeDog() {
   cells[dogPosition].classList.remove('dog')
-}
-
-function addHooversEasy() {
-  for (let i = hooverStartPosition, j = 13; i <= hooverEndPositionEasy, j < 20; i++, j++) {
-  cells[i].classList.add('hoover')
-  cells[j].classList.add('hoover')
-}
 }
 
 // function generateRandomPikachuIndex() {
@@ -87,23 +75,46 @@ document.addEventListener('keyup', moveDog)
 
 
 function startGame() {
-  console.log('meow')
-  timer = setInterval(() => {
-    // if (totalPikas > 9) {
-    //   endGame()
-    //   return
-    // }
-    totalhoovers++
-    // removePikachu(pikaPosition)
-    // pikaPosition = generateRandomPikachuIndex()
-    // addPikachu(pikaPosition)
+  // timer = setInterval(() => {
+  //   if (totalPikas > 9) {
+  //     endGame()
+  //     return
+  //   }
+  //   totalhoovers++
+  //   removePikachu(pikaPosition)
+  //   pikaPosition = generateRandomPikachuIndex()
+  //   addPikachu(pikaPosition)
+  // }, 1000)
+  
+  function addDog(dogPosition) {
+    cells[dogPosition].classList.add('dog')
+  }
+  addDog(dogPosition)
+
+  function addHooversEasy() {
+    for (let i = hooverStartPosition, j = 13; i <= hooverEndPositionEasy, j < 20; i++, j++) {
+    const rowOne = cells[i]
+    const rowTwo = cells[j]
+    rowOne.classList.add('hoover')
+    rowTwo.classList.add('hoover')
+    
+    setInterval(() => {
+    cells[i + 1].classList.add('hoover')
+    cells[j + 1].classList.add('hoover')
   }, 1000)
+  }
+  }
+  addHooversEasy()
+  // console.log(hooverArray)
+  // // timer = setInterval(() => {
+  //   hooverArray = hooverArray.map((hoover) => {
+  //     return hoover + 1
+  //   })
+  //   console.log(hooverArray)
+  //   hooverArray.classList.add('hoover')
 }
 
-// startGame()
 createGrid()
-addDog(dogPosition)
-addHooversEasy()
 
 // * Events
 start.addEventListener('click', startGame)
