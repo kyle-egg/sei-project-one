@@ -54,6 +54,12 @@ header {
   background-size: contain;
 }
 
+.grid div.hoover {
+  background-image: url(../assets/henryhoover.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 footer {
   align-items: center;
   text-align: center;
