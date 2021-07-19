@@ -99,7 +99,7 @@ window.addEventListener('keyup', moveDog)
 
 function shootDog(event) {  
   switch (event.keyCode) {
-    case 90:
+    case 16:
     addShot(dogShot)++ // * add shot
     break
 }
@@ -131,9 +131,10 @@ window.addEventListener('keypress', shootDog)
   addHooversEasy()
 
   function removeHooversEasy() {
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0, j = 11; i <= 1, j<= 13; i++, j++) {
     setInterval(() => {
     cells[i++].classList.remove('hoover')
+    cells[j++].classList.remove('hoover')
     }, 1000)
   }
 }
