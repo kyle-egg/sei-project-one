@@ -116,6 +116,7 @@ window.addEventListener('keypress', shootDog)
     setInterval(() => {
     cells[i++].classList.add('hoover')
     cells[j++].classList.add('hoover')
+    
     // console.log(cells[i++])
     // console.log(cells[j++])
     
@@ -131,7 +132,7 @@ window.addEventListener('keypress', shootDog)
   addHooversEasy()
 
   function removeHooversEasy() {
-    for (let i = 0, j = 11; i <= 1, j<= 13; i++, j++) {
+    for (let i = 0, j = 11; i <= 1, j<= 12; i++, j++) {
     setInterval(() => {
     cells[i++].classList.remove('hoover')
     cells[j++].classList.remove('hoover')
