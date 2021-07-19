@@ -14,10 +14,10 @@ const cells = []
 // let timer
 // let score = 0
 let dogPosition = 115
-let hooverArray = [2, 3, 4, 5, 6, 7, 8]
+let hooverArray = [2, 3, 4, 5, 6, 7, 8, 13, 14, 15, 16, 17, 18, 19]
+let dogShot = dogPosition - width
 const hooverStartPosition = 2
 const hooverEndPositionEasy = 9
-
 
 // * Functions
 
@@ -69,6 +69,13 @@ function startGame() {
     cells[dogPosition].classList.remove('dog')
   }
 
+  function addShot(dogShot) {
+    cells[dogShot].classList.add('dogshot')
+  }
+
+  function removeShot() {
+    cells[dogShot].classList.remove('dogshot')
+  }
 
 function moveDog(event) {
 
@@ -83,14 +90,23 @@ function moveDog(event) {
     case 37:
       if (x > 0) dogPosition--
       break
+      
   }
 
   addDog(dogPosition) // * add dog to the new position
 }
+window.addEventListener('keyup', moveDog)
 
+function shootDog(event) {  
+  switch (event.keyCode) {
+    case 90:
+    addShot(dogShot)++ // * add shot
+    break
+}
+  addShot(dogShot)
+}
 
-document.addEventListener('keyup', moveDog)
-
+window.addEventListener('keypress', shootDog)
 
   function addHooversEasy() {
     for (let i = hooverStartPosition, j = 13; i <= hooverEndPositionEasy, j < 20; i++, j++) {
@@ -100,11 +116,30 @@ document.addEventListener('keyup', moveDog)
     setInterval(() => {
     cells[i++].classList.add('hoover')
     cells[j++].classList.add('hoover')
+    // console.log(cells[i++])
+    // console.log(cells[j++])
+    
+    // if (cells[i++] < width - 1) cells[i + 50]
+      // break
+    // case 37:
+    //   if (x > 0) dogPosition--
+    //   break
     // cells[i--].classList.remove('hoover')
   }, 1000)
   }
   }
   addHooversEasy()
+
+  function removeHooversEasy() {
+    for (let i = 0; i <= 1; i++) {
+    setInterval(() => {
+    cells[i++].classList.remove('hoover')
+    }, 1000)
+  }
+}
+removeHooversEasy()
+
+
   // console.log(hooverArray)
   // // timer = setInterval(() => {
   //   hooverArray = hooverArray.map((hoover) => {

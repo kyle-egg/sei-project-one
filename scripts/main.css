@@ -60,7 +60,14 @@ header {
   background-size: contain;
 }
 
+.grid div.dogshot {
+  background-color: blue;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 footer {
   align-items: center;
   text-align: center;
+  margin: 100px; 
 }
