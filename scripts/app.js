@@ -21,9 +21,6 @@ const hooverEndPositionEasy = 9
 
 // * Functions
 
-function removeDog() {
-  cells[dogPosition].classList.remove('dog')
-}
 
 // function generateRandomPikachuIndex() {
 //   return Math.floor(Math.random() * 100)
@@ -42,29 +39,6 @@ function createGrid() {
     cell.textContent = i
   }
 }
-
-
-function moveDog(event) {
-
-  removeDog(dogPosition) // * remove dog from the current position
-
-  const x = dogPosition % width
-
-  switch (event.keyCode) { // * calculate the next position and update it
-    case 39:
-      if (x < width - 1) dogPosition++
-      break
-    case 37:
-      if (x > 0) dogPosition--
-      break
-  }
-
-  addDog(dogPosition) // * add dog to the new position
-}
-
-
-document.addEventListener('keyup', moveDog)
-
 
 
 // function endGame() {
@@ -91,16 +65,42 @@ function startGame() {
   }
   addDog(dogPosition)
 
+  function removeDog() {
+    cells[dogPosition].classList.remove('dog')
+  }
+
+
+function moveDog(event) {
+
+  removeDog(dogPosition) // * remove dog from the current position
+
+  const x = dogPosition % width
+
+  switch (event.keyCode) { // * calculate the next position and update it
+    case 39:
+      if (x < width - 1) dogPosition++
+      break
+    case 37:
+      if (x > 0) dogPosition--
+      break
+  }
+
+  addDog(dogPosition) // * add dog to the new position
+}
+
+
+document.addEventListener('keyup', moveDog)
+
+
   function addHooversEasy() {
     for (let i = hooverStartPosition, j = 13; i <= hooverEndPositionEasy, j < 20; i++, j++) {
-    const rowOne = cells[i]
-    const rowTwo = cells[j]
-    rowOne.classList.add('hoover')
-    rowTwo.classList.add('hoover')
+    cells[i].classList.add('hoover')
+    cells[j].classList.add('hoover')
     
     setInterval(() => {
-    cells[i + 1].classList.add('hoover')
-    cells[j + 1].classList.add('hoover')
+    cells[i++].classList.add('hoover')
+    cells[j++].classList.add('hoover')
+    // cells[i--].classList.remove('hoover')
   }, 1000)
   }
   }
