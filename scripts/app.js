@@ -2,7 +2,6 @@
 
 const grid = document.querySelector('.grid')
 const start = document.querySelector('#start')
-// const scoreDisplay = document.querySelector('#score-display')
 
 // * Game Variables
 
@@ -10,25 +9,13 @@ const width = 11
 const gridCellCount = width * width
 const cells = []
 
-
-// let timer
-// let score = 0
 let dogPosition = 115
-let hooverArray = [2, 3, 4, 5, 6, 7, 8, 13, 14, 15, 16, 17, 18, 19]
 let dogShot = dogPosition - width
 const hooverStartPosition = 2
 const hooverEndPositionEasy = 9
 
 // * Functions
 
-
-// function generateRandomPikachuIndex() {
-//   return Math.floor(Math.random() * 100)
-// }
-
-// function hasPikachu(element) {
-//   return element.classList.contains('pika')
-// }
 
 function createGrid() {
   for (let i = 0; i < gridCellCount; i++) {
@@ -40,13 +27,11 @@ function createGrid() {
   }
 }
 
-
-// function endGame() {
-//   clearInterval(timer)
-//   removePikachu(pikaPosition)
-//   alert(score)
-// }
-
+function endGame(){
+  console.log('meow')
+  clearInterval()
+  alert("You lose bitch")
+  }
 
 function startGame() {
   // timer = setInterval(() => {
@@ -60,6 +45,8 @@ function startGame() {
   //   addPikachu(pikaPosition)
   // }, 1000)
   
+  cells[111].classList.add('end')
+  addHooversEasy()
   function addDog(dogPosition) {
     cells[dogPosition].classList.add('dog')
   }
@@ -69,13 +56,15 @@ function startGame() {
     cells[dogPosition].classList.remove('dog')
   }
 
-  function addShot(dogShot) {
-    cells[dogShot].classList.add('dogshot')
-  }
+  // function addShot(dogShot) {
+  //   cells[dogShot].classList.add('dogshot')
+  // }
 
-  function removeShot() {
-    cells[dogShot].classList.remove('dogshot')
-  }
+  // function removeShot() {
+  //   cells[dogShot].classList.remove('dogshot')
+  // }
+
+
 
 function moveDog(event) {
 
@@ -100,6 +89,7 @@ window.addEventListener('keyup', moveDog)
 function shootDog(event) {  
   switch (event.keyCode) {
     case 16:
+      console.log('does this work')
     addShot(dogShot)++ // * add shot
     break
 }
@@ -112,16 +102,25 @@ window.addEventListener('keypress', shootDog)
     for (let i = hooverStartPosition, j = 13; i <= hooverEndPositionEasy, j < 20; i++, j++) {
     cells[i].classList.add('hoover')
     cells[j].classList.add('hoover')
-    
+
     setInterval(() => {
     cells[i++].classList.add('hoover')
     cells[j++].classList.add('hoover')
-    
+      
+    if (cells[j].classList.contains('end', 'hoover')) {
+    endGame()
+    clearInterval()
+    }
+
+    // cells[j + 20].classList.add('hoover')
+    // if (cells[j].classList.contains('hoover')) {
+    // for (let i = 50; i <= 55; i++) {
+    //     cells[i].classList.add('hoover')
+    // }}
     // console.log(cells[i++])
     // console.log(cells[j++])
-    
     // if (cells[i++] < width - 1) cells[i + 50]
-      // break
+      // brea
     // case 37:
     //   if (x > 0) dogPosition--
     //   break
@@ -129,7 +128,6 @@ window.addEventListener('keypress', shootDog)
   }, 1000)
   }
   }
-  addHooversEasy()
 
   function removeHooversEasy() {
     for (let i = 0, j = 11; i <= 1, j<= 12; i++, j++) {
@@ -141,14 +139,6 @@ window.addEventListener('keypress', shootDog)
 }
 removeHooversEasy()
 
-
-  // console.log(hooverArray)
-  // // timer = setInterval(() => {
-  //   hooverArray = hooverArray.map((hoover) => {
-  //     return hoover + 1
-  //   })
-  //   console.log(hooverArray)
-  //   hooverArray.classList.add('hoover')
 }
 
 createGrid()
