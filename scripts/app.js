@@ -44,9 +44,9 @@ function startGame() {
   //   pikaPosition = generateRandomPikachuIndex()
   //   addPikachu(pikaPosition)
   // }, 1000)
-  
-  cells[111].classList.add('end')
   addHooversEasy()
+  
+  cells[30].classList.add('end')
   function addDog(dogPosition) {
     cells[dogPosition].classList.add('dog')
   }
@@ -86,17 +86,16 @@ function moveDog(event) {
 }
 window.addEventListener('keyup', moveDog)
 
-function shootDog(event) {  
-  switch (event.keyCode) {
-    case 16:
-      console.log('does this work')
-    addShot(dogShot)++ // * add shot
-    break
-}
-  addShot(dogShot)
-}
+// function shootDog(event) {  
+//   switch (event.keyCode) {
+//     case 16:
+//     addShot(dogShot)++ // * add shot
+//     break
+// }
+//   addShot(dogShot)
+// }
 
-window.addEventListener('keypress', shootDog)
+// window.addEventListener('keypress', shootDog)
 
   function addHooversEasy() {
     for (let i = hooverStartPosition, j = 13; i <= hooverEndPositionEasy, j < 20; i++, j++) {
@@ -145,5 +144,3 @@ createGrid()
 
 // * Events
 start.addEventListener('click', startGame)
-
-
