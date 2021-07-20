@@ -12,6 +12,7 @@ const cells = []
 let dogPosition = 115
 const hooverStartPosition = 2
 const hooverEndPositionEasy = 9
+let hooverGraveyard = []
 
 // * Functions
 
@@ -29,23 +30,25 @@ function createGrid() {
 function endGame(){
   console.log('meow')
   clearInterval()
-  alert('You lose bitch')
+  alert('You lose!')
 }
 
 function startGame() {
  
   addHooversEasy()
   
-  cells[111].classList.add('end')
+  // This defines the end so the invaders can win
+  cells[111].classList.add('end') 
+
+  // This adds dog
   function addDog(dogPosition) {
     cells[dogPosition].classList.add('dog')
   }
   addDog(dogPosition)
-
+  
   function removeDog() {
     cells[dogPosition].classList.remove('dog')
   }
-
   function addShot(dogShot) {
     cells[dogShot].classList.add('dogshot')
   }
@@ -53,9 +56,12 @@ function startGame() {
   function removeShot() {
     cells[dogShot].classList.remove('dogshot')
   }
-
-
-
+  // !This does not Work!!!
+  function shotEnd() {
+    clearInterval(shoot)
+  }
+  
+  // This moves yo doggy
   function moveDog(event) {
 
     removeDog(dogPosition) // * remove dog from the current position
@@ -70,33 +76,37 @@ function startGame() {
         if (x > 0) dogPosition--
         break
     }
-    // console.log(dogPosition)
     addDog(dogPosition) // * add dog to the new position
   }
   window.addEventListener('keyup', moveDog)
 
+  // This shoots yo doggy
+
   function shootDog(e) {  
     let dogShot = dogPosition
-    console.log(dogPosition)
-    console.log(dogShot)
-    if (e.keyCode === 38) {
-      setInterval(() => {
+    if (e.keyCode === 16) {
+      setInterval((shoot) => {
         cells[dogShot].classList.remove('dogshot')
         dogShot -= width
         cells[dogShot].classList.add('dogshot')
-      }, 500)
+        if (cells[dogShot].classList.contains('hoover')) {
+          console.log('BANG')
+          // ! This is not quite working!!
+          cells[dogShot].classList.remove('dogshot')
+          cells[j].classList.remove('hoover')
+          clearInterval(shoot)
+          const deadHoover = cells[j].indexOf(dogShot)
+          hooverGraveyard.push(deadHoover)
+          console.log(deadHoover)
+          console.log(hooverGraveyard)
+        }
+            
+      }, 100)
     }
-
-    //   switch (e.key) {
-    //     case 32:
-    //     addShot(dogShot - width) // * add shot
-    //     break
-
-    // }
-    //   addShot(dogShot)
   }
-
   window.addEventListener('keydown', shootDog)
+    
+  // This adds yo Hoover
 
   function addHooversEasy() {
     for (let i = hooverStartPosition, j = 13; i <= hooverEndPositionEasy, j < 20; i++, j++) {
@@ -106,7 +116,8 @@ function startGame() {
       setInterval(() => {
         cells[i++].classList.add('hoover')
         cells[j++].classList.add('hoover')
-      
+        console.log(cells[j])
+        // ! Could have an error here too!
         if (cells[j].classList.contains('end', 'hoover')) {
           endGame()
           clearInterval()
@@ -128,10 +139,10 @@ function startGame() {
       }, 1000)
     }
   }
-
+  // This creates the effect of the Hoovers Moving
   function removeHooversEasy() {
     for (let i = 0, j = 11; i <= 1, j <= 12; i++, j++) {
-      setInterval(() => {
+      setInterval((removeHoovers) => {
         cells[i++].classList.remove('hoover')
         cells[j++].classList.remove('hoover')
       }, 1000)
