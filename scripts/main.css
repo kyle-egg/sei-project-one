@@ -66,6 +66,12 @@ header {
   background-size: contain;
 }
 
+.grid div.hoovershot {
+  background-color: green;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .grid div.right {
   background-color: red;
 }

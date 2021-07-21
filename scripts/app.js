@@ -12,7 +12,7 @@ const cells = []
 let dogPosition = 115
 const hooverStartPosition = 2
 const hooverEndPositionEasy = 9
-const hooverArray = [2,3,4,5,6,7,8,13,14,15,16,17,18,19]
+// const hooverArray = [2,3,4,5,6,7,8,13,14,15,16,17,18,19]
 const hooverGraveyard = []
 
 // * Functions
@@ -29,7 +29,6 @@ function createGrid() {
 }
 
 function endGame(){
-  console.log('meow')
   clearInterval()
   alert('You lose!')
 }
@@ -120,7 +119,7 @@ function startGame() {
       cells[j].classList.add('hoover')
     
 
-      setInterval(() => {
+      setInterval((hooverAdd) => {
         cells[i++].classList.add('hoover')
         cells[j++].classList.add('hoover')
         // const hooverArray = document.querySelectorAll('.hoover')
@@ -129,42 +128,45 @@ function startGame() {
         //   cells[j] += 10
         // }
         // ! Error here too!
-        
-        function hooversShooting (e) {
-          let hooverShot = (dogPosition * Math.random())
-          console.log(hooverShot)
-          console.log(cells[i].getAttribute('data-index'))
-          // let randomShotIndex = (Math.floor(Math.random() * 500))
-          // if (randomShotIndex == cells[j].getAttribute('data-index') || cells[i].getAttribute('data-index')) {
-          //   console.log('yeah')
-          // } else {
-          //   console.log('nah')
-          // }
-        }
-        
-        hooversShooting()
-
+      
         if (cells[j].classList.contains('end', 'hoover')) {
           endGame()
-          clearInterval()
+          clearInterval(hooverAdd)
         }
       
       }, 1000)
     }
-  }
+    setInterval((hShot) => {
+      let hooverShot = (Math.floor(dogPosition * Math.random())) 
+      // console.log(hooverShot)
+      // console.log(cells[hooverShot].classList)
+      if 
+      (cells[hooverShot].classList.contains('hoover')) {
 
-  // This creates the effect of the Hoovers Moving
-  function removeHooversEasy() {
-    for (let i = 0, j = 11; i <= 1, j <= 12; i++, j++) {
-      setInterval((removeHoovers) => {
-        cells[i++].classList.remove('hoover')
-        cells[j++].classList.remove('hoover')
-      }, 1000)
+        setInterval((hShooting) => {
+
+          cells[hooverShot].classList.remove('hoovershot')
+          hooverShot += width
+          cells[hooverShot].classList.add('hoovershot')
+      
+        }, 100)
+
+      }
+    }, 100)
+
+    // This creates the effect of the Hoovers Moving
+    function removeHooversEasy() {
+      for (let i = 0, j = 11; i <= 1, j <= 12; i++, j++) {
+        setInterval((removeHoovers) => {
+          cells[i++].classList.remove('hoover')
+          cells[j++].classList.remove('hoover')
+        }, 1000)
+      }
     }
+    removeHooversEasy()
+
+
   }
-  removeHooversEasy()
-
-
 }
 createGrid()
   
