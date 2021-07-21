@@ -96,15 +96,15 @@ function startGame() {
         }
 
         const hooverHit = cells[dogShot].classList.contains('hoover', 'dogshot')
-        
+
         if (hooverHit) {
+          const deadHoover = dogShot          
+          hooverGraveyard.push(deadHoover)
+          console.log(deadHoover)
+          console.log(hooverGraveyard)
+          
           cells[dogShot].classList.remove('dogshot', 'hoover')
           clearInterval(dogShooting)
-        //   clearInterval(shoot)
-        //   const deadHoover = cells[j].indexOf(dogShot)
-        //   hooverGraveyard.push(deadHoover)
-        //   console.log(deadHoover)
-        //   console.log(hooverGraveyard)
         }
 
         const shotHit = cells[dogShot].classList.contains('hoovershot', 'dogshot')
@@ -112,12 +112,13 @@ function startGame() {
         if (shotHit) {
           setTimeout(()=>{
             cells[dogShot].classList.remove('dogshot')
+            cells[dogShot += width].classList.remove('hoovershot') 
             console.log('dog shot dies')
           }, 100)
           clearInterval(dogShooting)
         }
 
-      }, 500)
+      }, 100)
     }
   }
   window.addEventListener('keydown', shootDog)
@@ -166,12 +167,8 @@ function startGame() {
             clearInterval(hooverShooting)
             return
           }
-          
-          console.log(dogPosition)
-          console.log(hooverShot)
 
           if (dogPosition === hooverShot) {
-            console.log('hit')
             clearInterval(hooverShooting)
             endGame()
           }
@@ -187,7 +184,7 @@ function startGame() {
             return          
           }
 
-        }, 500)
+        }, 100)
       }
     }, 100)
 
