@@ -10,10 +10,11 @@ const gridCellCount = width * width
 const cells = []
 
 let dogPosition = 104
-const hooverStartPosition = 13
-const hooverEndPositionEasy = 19
-// const hooverArray = [2,3,4,5,6,7,8,13,14,15,16,17,18,19]
+const hooversRowOne = [13,14,15,16,17,18,19]
+const hooversRowTwo = [24,25,26,27,28,29,30]
 const hooverGraveyard = []
+const i = []
+const j = []
 
 // * Functions
 
@@ -34,7 +35,7 @@ function endGame(){
 }
 
 function startGame() {
- 
+  createGrid()
   addHooversEasy()
   // This defines the end so the invaders can win
   cells[111].classList.add('end') 
@@ -126,10 +127,10 @@ function startGame() {
   // This adds yo Hoover
 
   function addHooversEasy() {
-    for (let i = hooverStartPosition, j = 24; i <= hooverEndPositionEasy, j <= 30; i++, j++) {
+    for (let i = hooversRowOne[0], j = hooversRowTwo[0]; i <= hooversRowOne[6], j <= hooversRowTwo[6]; i++, j++) {
       // if(!)
-      cells[i].classList.add('hoover')
-      cells[j].classList.add('hoover')
+      // cells[i].classList.add('hoover')
+      // cells[j].classList.add('hoover')
     
       const hooverAdd = setInterval(() => {
         cells[i++].classList.add('hoover')
@@ -139,14 +140,14 @@ function startGame() {
         // if (cells[j++].classList.contains('right')) {
         //   cells[j] += 10
         // }
-        
+        console.log(hooversRowOne)
       
         if (cells[j].classList.contains('end', 'hoover')) {
           endGame()
           clearInterval(hooverAdd)
         }
       
-      }, 1000)
+      }, 800)
     }
     setInterval(() => {
       let hooverShot = (Math.floor(dogPosition * Math.random())) 
@@ -202,7 +203,7 @@ function startGame() {
 
   }
 }
-createGrid()
-  
+
+
 // * Events
 start.addEventListener('click', startGame)
