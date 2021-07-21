@@ -193,7 +193,7 @@ function startGame() {
 
     // This creates the effect of the Hoovers Moving
     function removeHooversEasy() {
-      for (let i = 13, j = 24; i <= 14, j <= 25; i++, j++) {
+      for (let i = 11, j = 22; i <= 12, j <= 23; i++, j++) {
         setInterval(() => {
           cells[i++].classList.remove('hoover')
           cells[j++].classList.remove('hoover')
