@@ -66,6 +66,10 @@ header {
   background-size: contain;
 }
 
+.grid div.right {
+  background-color: red;
+}
+
 footer {
   align-items: center;
   text-align: center;
