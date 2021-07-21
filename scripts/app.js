@@ -29,7 +29,6 @@ function createGrid() {
 }
 
 function endGame(){
-  clearInterval()
   alert('You lose!')
 }
 
@@ -86,25 +85,35 @@ function startGame() {
   function shootDog(e) {  
     let dogShot = dogPosition
     if (e.keyCode === 16) {
-      setInterval((shoot) => {
+      const dogShooting = setInterval(() => {
         cells[dogShot].classList.remove('dogshot')
         dogShot -= width
         cells[dogShot].classList.add('dogshot')
         
-        // const hooverHit = cells[dogShot].classList.contains('hoover', 'dogshot')
+        // ! BELOW DOES NOT WORK
+
         
-        // if (hooverHit) {
-        //   console.log(hooverHit)
-        //   // ! This is not quite working!!
-        //   hooverHit.classList.remove('dogshot', 'hoover')
+        if (dogShot < 11 ) {
+          setTimeout(()=>{
+            cells[dogShot].classList.remove('dogshot')  
+          }, 100)
+          // cells[hooverShot].classList.remove('hoovershot')
+          clearInterval(dogShooting)
+          return
+        }
+
+        const hooverHit = cells[dogShot].classList.contains('hoover', 'dogshot')
+        
+        if (hooverHit) {
+          console.log(hooverHit)
+          cells[dogShot].classList.remove('dogshot', 'hoover')
           
         //   clearInterval(shoot)
         //   const deadHoover = cells[j].indexOf(dogShot)
         //   hooverGraveyard.push(deadHoover)
         //   console.log(deadHoover)
         //   console.log(hooverGraveyard)
-        // }
-            
+        }
       }, 100)
     }
   }
@@ -118,8 +127,7 @@ function startGame() {
       cells[i].classList.add('hoover')
       cells[j].classList.add('hoover')
     
-
-      setInterval((hooverAdd) => {
+      const hooverAdd = setInterval(() => {
         cells[i++].classList.add('hoover')
         cells[j++].classList.add('hoover')
         // const hooverArray = document.querySelectorAll('.hoover')
@@ -127,7 +135,8 @@ function startGame() {
         // if (cells[j++].classList.contains('right')) {
         //   cells[j] += 10
         // }
-        // ! Error here too!
+        
+        // ! BELOW DOES NOT WORK
       
         if (cells[j].classList.contains('end', 'hoover')) {
           endGame()
@@ -136,28 +145,35 @@ function startGame() {
       
       }, 1000)
     }
-    setInterval((hShot) => {
+    setInterval(() => {
       let hooverShot = (Math.floor(dogPosition * Math.random())) 
-      // console.log(hooverShot)
-      // console.log(cells[hooverShot].classList)
-      if 
-      (cells[hooverShot].classList.contains('hoover')) {
+      if (cells[hooverShot].classList.contains('hoover')) {
 
-        setInterval((hShooting) => {
+        const hooverShooting = setInterval(() => {
 
           cells[hooverShot].classList.remove('hoovershot')
           hooverShot += width
           cells[hooverShot].classList.add('hoovershot')
-      
-        }, 100)
+          
+          
 
+          if (hooverShot > 109 ) {
+            setTimeout(()=>{
+              cells[hooverShot].classList.remove('hoovershot')  
+            }, 100)
+            // cells[hooverShot].classList.remove('hoovershot')
+            clearInterval(hooverShooting)
+            return
+          }
+
+        }, 100)
       }
     }, 100)
 
     // This creates the effect of the Hoovers Moving
     function removeHooversEasy() {
       for (let i = 0, j = 11; i <= 1, j <= 12; i++, j++) {
-        setInterval((removeHoovers) => {
+        setInterval(() => {
           cells[i++].classList.remove('hoover')
           cells[j++].classList.remove('hoover')
         }, 1000)
