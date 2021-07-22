@@ -12,9 +12,9 @@ const cells = []
 let dogPosition = 104
 const hooversRowOne = [13,14,15,16,17,18,19]
 const hooversRowTwo = [24,25,26,27,28,29,30]
+const hoovers = []
 const hooverGraveyard = []
-const i = []
-const j = []
+
 
 // * Functions
 
@@ -35,8 +35,8 @@ function endGame(){
 }
 
 function startGame() {
-  createGrid()
   addHooversEasy()
+  createGrid()
   // This defines the end so the invaders can win
   cells[111].classList.add('end') 
 
@@ -101,8 +101,9 @@ function startGame() {
         if (hooverHit) {
           const deadHoover = dogShot          
           hooverGraveyard.push(deadHoover)
-          console.log(deadHoover)
-          console.log(hooverGraveyard)
+          // console.log(deadHoover)
+          // console.log(deadHoover)
+          // console.log(hooverGraveyard)
           
           cells[dogShot].classList.remove('dogshot', 'hoover')
           clearInterval(dogShooting)
@@ -114,7 +115,7 @@ function startGame() {
           setTimeout(()=>{
             cells[dogShot].classList.remove('dogshot')
             cells[dogShot += width].classList.remove('hoovershot') 
-            console.log('dog shot dies')
+            // console.log('dog shot dies')
           }, 100)
           clearInterval(dogShooting)
         }
@@ -128,80 +129,95 @@ function startGame() {
 
   function addHooversEasy() {
     for (let i = hooversRowOne[0], j = hooversRowTwo[0]; i <= hooversRowOne[6], j <= hooversRowTwo[6]; i++, j++) {
-      // if(!)
-      // cells[i].classList.add('hoover')
-      // cells[j].classList.add('hoover')
-    
       const hooverAdd = setInterval(() => {
-        cells[i++].classList.add('hoover')
-        cells[j++].classList.add('hoover')
-        // const hooverArray = document.querySelectorAll('.hoover')
-        // console.log(hooverArray)
-        // if (cells[j++].classList.contains('right')) {
-        //   cells[j] += 10
-        // }
-        console.log(hooversRowOne)
-      
-        if (cells[j].classList.contains('end', 'hoover')) {
-          endGame()
-          clearInterval(hooverAdd)
+
+        console.log(hooverGraveyard, j, i)
+        if (!hooverGraveyard.includes(j) || !hooverGraveyard.includes(i)) {
+          cells[i++].classList.add('hoover')
+          cells[j++].classList.add('hoover')
+          // console.log([j++])
+          // console.log(hooverGraveyard)
+          // hoovers.splice(0, hoovers.length)
+          // const updatingHoovers = hoovers.filter(h => hoovers.length > 6)
+          // console.log(updatingHoovers)
+          // hoovers.push(i)
+          // hoovers.push(j)
+          // console.log(hoovers)
+          // console.log(hooverGraveyard)
+          // hoovers.splice(0, hoovers.length)
+          // console.log(hoovers)
+          // const hooverArray = document.querySelectorAll('.hoover')
+          // console.log(hooverArray)
+          // if (cells[j++].classList.contains('right')) {
+          //   cells[j] += 10
+          // }
+
+          // console.log(i)
+          
+          if (cells[j].classList.contains('end', 'hoover')) {
+            endGame()
+            clearInterval(hooverAdd)
+          }
+        
+        } else {
+          console.log('hello')
         }
-      
-      }, 800)
+
+      }, 1500)
     }
-    setInterval(() => {
-      let hooverShot = (Math.floor(dogPosition * Math.random())) 
-      if (cells[hooverShot].classList.contains('hoover')) {
+  }
+  setInterval(() => {
+    let hooverShot = (Math.floor(dogPosition * Math.random())) 
+    if (cells[hooverShot].classList.contains('hoover')) {
 
-        const hooverShooting = setInterval(() => {
+      const hooverShooting = setInterval(() => {
 
-          cells[hooverShot].classList.remove('hoovershot')
-          hooverShot += width
-          cells[hooverShot].classList.add('hoovershot')
+        cells[hooverShot].classList.remove('hoovershot')
+        hooverShot += width
+        cells[hooverShot].classList.add('hoovershot')
           
 
-          if (hooverShot > 109 ) {
-            setTimeout(()=>{
-              cells[hooverShot].classList.remove('hoovershot')  
-            }, 100)
-            // cells[hooverShot].classList.remove('hoovershot')
-            clearInterval(hooverShooting)
-            return
-          }
+        if (hooverShot > 109 ) {
+          setTimeout(()=>{
+            cells[hooverShot].classList.remove('hoovershot')  
+          }, 100)
+          // cells[hooverShot].classList.remove('hoovershot')
+          clearInterval(hooverShooting)
+          return
+        }
 
-          if (dogPosition === hooverShot) {
-            clearInterval(hooverShooting)
-            endGame()
-          }
+        if (dogPosition === hooverShot) {
+          clearInterval(hooverShooting)
+          endGame()
+        }
 
-          const shootHit = cells[hooverShot].classList.contains('dogshot', 'hoovershot')
+        const shootHit = cells[hooverShot].classList.contains('dogshot', 'hoovershot')
         
-          if (shootHit) {
-            setTimeout(()=>{
-              cells[hooverShot].classList.remove('hoovershot')
-              console.log('hoover shot dies')  
-            }, 100)
-            clearInterval(hooverShooting)
-            return          
-          }
+        if (shootHit) {
+          setTimeout(()=>{
+            cells[hooverShot].classList.remove('hoovershot')
+            // console.log('hoover shot dies')  
+          }, 100)
+          clearInterval(hooverShooting)
+          return          
+        }
 
-        }, 100)
-      }
-    }, 100)
-
-    // This creates the effect of the Hoovers Moving
-    function removeHooversEasy() {
-      for (let i = 11, j = 22; i <= 12, j <= 23; i++, j++) {
-        setInterval(() => {
-          cells[i++].classList.remove('hoover')
-          cells[j++].classList.remove('hoover')
-        }, 1000)
-      }
+      }, 100)
     }
-    removeHooversEasy()
+  }, 100)
 
-
+  // This creates the effect of the Hoovers Moving
+  function removeHooversEasy() {
+    for (let i = 11, j = 22; i <= 12, j <= 23; i++, j++) {
+      setInterval(() => {
+        cells[i++].classList.remove('hoover')
+        cells[j++].classList.remove('hoover')
+      }, 1000)
+    }
   }
+  removeHooversEasy()
+
+
 }
 
 
