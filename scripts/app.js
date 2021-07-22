@@ -10,9 +10,9 @@ const gridCellCount = width * width
 const cells = []
 
 let dogPosition = 104
-const hooversRowOne = [13,14,15,16,17,18,19]
-const hooversRowTwo = [24,25,26,27,28,29,30]
-const hoovers = []
+
+let hoovers = [13,14,15,16,17,18,19,24,25,26,27,28,29,30] 
+const hooversMoveForward = []
 const hooverGraveyard = []
 
 
@@ -35,7 +35,7 @@ function endGame(){
 }
 
 function startGame() {
-  addHooversEasy()
+  // addHooversEasy()
   createGrid()
   // This defines the end so the invaders can win
   cells[111].classList.add('end') 
@@ -96,16 +96,21 @@ function startGame() {
           return
         }
 
-        const hooverHit = cells[dogShot].classList.contains('hoover', 'dogshot')
+        const hooverHit = cells[dogShot].classList.contains('hoover')
 
         if (hooverHit) {
-          const deadHoover = dogShot          
-          hooverGraveyard.push(deadHoover)
+          // const deadHoover = dogShot          
+          // hooverGraveyard.push(deadHoover)
           // console.log(deadHoover)
           // console.log(deadHoover)
           // console.log(hooverGraveyard)
           
           cells[dogShot].classList.remove('dogshot', 'hoover')
+
+          hoovers = hoovers.filter(hoover => {
+            return dogShot !== hoover
+          })
+          console.log(hoovers)
           clearInterval(dogShooting)
         }
 
@@ -127,45 +132,81 @@ function startGame() {
     
   // This adds yo Hoover
 
-  function addHooversEasy() {
-    for (let i = hooversRowOne[0], j = hooversRowTwo[0]; i <= hooversRowOne[6], j <= hooversRowTwo[6]; i++, j++) {
-      const hooverAdd = setInterval(() => {
+  hoovers.forEach(hoover => {
+    cells[hoover].classList.add('hoover')
+  })
 
-        console.log(hooverGraveyard, j, i)
-        if (!hooverGraveyard.includes(j) || !hooverGraveyard.includes(i)) {
-          cells[i++].classList.add('hoover')
-          cells[j++].classList.add('hoover')
-          // console.log([j++])
-          // console.log(hooverGraveyard)
-          // hoovers.splice(0, hoovers.length)
-          // const updatingHoovers = hoovers.filter(h => hoovers.length > 6)
-          // console.log(updatingHoovers)
-          // hoovers.push(i)
-          // hoovers.push(j)
-          // console.log(hoovers)
-          // console.log(hooverGraveyard)
-          // hoovers.splice(0, hoovers.length)
-          // console.log(hoovers)
-          // const hooverArray = document.querySelectorAll('.hoover')
-          // console.log(hooverArray)
-          // if (cells[j++].classList.contains('right')) {
-          //   cells[j] += 10
-          // }
+  console.log(hoovers)
 
-          // console.log(i)
-          
-          if (cells[j].classList.contains('end', 'hoover')) {
-            endGame()
-            clearInterval(hooverAdd)
-          }
-        
-        } else {
-          console.log('hello')
-        }
-
-      }, 1500)
-    }
+  function removeHoovers() {
+    cells.forEach(cell => {
+      cell.classList.remove('hoover')
+    })
   }
+  
+  function hooversMove() {
+    setInterval(() => {
+      removeHoovers()
+      console.log(hoovers)
+      hoovers = hoovers.map(hoover => {
+        const newHooverPosition = hoover + 1
+        cells[newHooverPosition].classList.add('hoover')
+        return newHooverPosition
+          
+      })
+
+      // const removeHooverMovement = hooversMoveForward.filter(hoover => hoover[0])
+      // console.log(removeHooverMovement)
+
+      // hooversMoveForward.forEach(hoover => {
+      //   cells[hoover].classList.add('hoover')
+      //   console.log(hooversMoveForward)
+      // })
+
+    }, 1000)
+
+  }
+  hooversMove()
+  // cells[hooversMoveForward[7]].classList.add('hoover')
+
+  // function addHooversEasy() {
+  //   const hooverAdd = setInterval(() => {
+  //     for (let i = 0; i <= hoovers.length; i++) {
+  //       console.log(hoovers.length, i)
+  //       if (!hooverGraveyard.includes(i)) {
+  //         cells[i++].classList.add('hoover')
+
+  // console.log([j++])
+  console.log(hooverGraveyard)
+  // hoovers.splice(0, hoovers.length)
+  // const updatingHoovers = hoovers.filter(h => hoovers.length > 6)
+  // console.log(updatingHoovers)
+  // hoovers.push(i)
+  // hoovers.push(j)
+  // console.log(hoovers)
+  // console.log(hooverGraveyard)
+  // hoovers.splice(0, hoovers.length)
+  // console.log(hoovers)
+  // const hooverArray = document.querySelectorAll('.hoover')
+  // console.log(hooverArray)
+  // if (cells[j++].classList.contains('right')) {
+  //   cells[j] += 10
+  // }
+
+  // console.log(i)
+          
+  //         if (cells[i].classList.contains('end', 'hoover')) {
+  //           endGame()
+  //           clearInterval(hooverAdd)
+  //         }
+        
+  //       } else {
+  //         console.log('hello')
+  //       }
+  //     }
+  //   }, 1500)
+  // }
+  
   setInterval(() => {
     let hooverShot = (Math.floor(dogPosition * Math.random())) 
     if (cells[hooverShot].classList.contains('hoover')) {
@@ -207,15 +248,15 @@ function startGame() {
   }, 100)
 
   // This creates the effect of the Hoovers Moving
-  function removeHooversEasy() {
-    for (let i = 11, j = 22; i <= 12, j <= 23; i++, j++) {
-      setInterval(() => {
-        cells[i++].classList.remove('hoover')
-        cells[j++].classList.remove('hoover')
-      }, 1000)
-    }
-  }
-  removeHooversEasy()
+  // function removeHooversEasy() {
+  //   for (let i = 11; i < 23; i++) {
+  //     setInterval(() => {
+  //       cells[i++].classList.remove('hoover')
+  //       cells[j++].classList.remove('hoover')
+  //     }, 1000)
+  //   }
+  // }
+  // removeHooversEasy()
 
 
 }
