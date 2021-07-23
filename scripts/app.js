@@ -225,6 +225,10 @@ function startGame() {
           endGame()
         }
 
+        if (hoovers > 109) {
+          endGame()
+        }
+
         // This shows where the shots collide
 
         const shootHit = cells[hooverShot].classList.contains('dogshot', 'hoovershot')
