@@ -57,7 +57,7 @@ header {
 }
 
 .grid div.hoovershot {
-  background-image:url(../assets/Vroom1.png);
+  background-image:url(../assets/vroom1.png);
   background-repeat: no-repeat;
   background-size: contain;
   z-index: 1;
