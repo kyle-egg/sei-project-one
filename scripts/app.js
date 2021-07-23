@@ -3,6 +3,7 @@
 const grid = document.querySelector('.grid')
 const start = document.querySelector('#start')
 const scoreDisplay = document.querySelector('#score-display')
+const audio = document.querySelector('audio')
 
 // * Game Variables
 
@@ -23,7 +24,6 @@ function createGrid() {
     cell.setAttribute('data-index', i)
     cells.push(cell)
     grid.appendChild(cell)
-    cell.textContent = i
   }
 }
 
@@ -35,6 +35,16 @@ function endGame(){
 function win() {
   alert(`You Win! With A Score Of ${score}! Play Again?`)
   location.reload()
+}
+
+function bark() {
+  audio.src = 'http://soundbible.com/mp3/Dog Woof-SoundBible.com-457935112.mp3'
+  audio.play()
+}
+
+function vac() {
+  audio.src = 'https://www.fesliyanstudios.com/play-mp3/4926'
+  audio.play()
 }
 
 function startGame() {
@@ -79,6 +89,7 @@ function startGame() {
   function shootDog(e) {  
     let dogShot = dogPosition
     if (e.keyCode === 16) {
+      bark()
       const dogShooting = setInterval(() => {
         cells[dogShot].classList.remove('dogshot')
         dogShot -= width
@@ -209,6 +220,7 @@ function startGame() {
         // This results in the GAME OVER
 
         if (dogPosition === hooverShot) {
+          vac()
           clearInterval(hooverShooting)
           endGame()
         }
@@ -226,7 +238,7 @@ function startGame() {
         }
       }, 100)
     }
-  }, 200)
+  }, 100)
 }
 
 

@@ -1,15 +1,31 @@
 * {
   box-sizing: border-box;
+  color: aliceblue;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 body {
   height: 100vh;
   margin: 0;
+  background-color: transparent;
+  background-image: url(../assets/floor.jpeg);
 }
 
 header {
   align-items: center;
   text-align: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: stretch;
+}
+
+
+#start {
+  background-image: url(../assets/rise-trafficmaster-pattern-carpet-h4117-1724-1200-64_400.jpg);
+  color: black;
+  padding: 10px 50px;
+  font-size: large;
+  border: none;
 }
 
 .intro {
@@ -28,11 +44,27 @@ header {
   height: 90vh;
   display: flex;
   justify-content: center;
+  position: relative;
+  background-image:url(../assets/rise-trafficmaster-pattern-carpet-h4117-1724-1200-64_400.jpg);
+
+}
+
+.grid div.dogshot {
+  background-image: url(../assets/woof1.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+
+.grid div.hoovershot {
+  background-image:url(../assets/Vroom1.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
 }
 
 .grid {
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -42,7 +74,6 @@ header {
 }
 
 .grid div {
-  border: 1px solid lightgrey;
   flex-grow: 1;
   height: 9.09%;
   width: 9.09%;
@@ -55,22 +86,11 @@ header {
 }
 
 .grid div.hoover {
-  background-image: url(../assets/henryhoover.png);
+  background-image: url(../assets/henryhoover1.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.grid div.dogshot {
-  background-color: blue;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.grid div.hoovershot {
-  background-color: green;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 
 .grid div.right {
   background-color: red;
@@ -79,5 +99,6 @@ header {
 footer {
   align-items: center;
   text-align: center;
-  margin: 100px 0px 0px 0px; 
+  padding: 10px;
+  background-image: url(../assets/floor.jpeg);
 }
