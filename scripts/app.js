@@ -10,7 +10,6 @@ const audio = document.querySelector('audio')
 const width = 11
 const gridCellCount = width * width
 const cells = []
-const rightSide = [10,21,32,43,54,65,76,87,98,109,120]
 
 let dogPosition = 104
 let hoovers = [13,14,15,16,17,18,19,24,25,26,27,28,29,30,35,36,37,38,39,40,41] 
@@ -84,7 +83,7 @@ function startGame() {
   }
   window.addEventListener('keyup', moveDog)
 
-  // This shoots your doggy
+  // This is how Milo shoots
 
   function shootDog(e) {  
     let dogShot = dogPosition
@@ -139,7 +138,6 @@ function startGame() {
         // This communicates the WIN
 
         if (hoovers.length === 0) {
-          console.log('yay')
           win()
         }
 
@@ -164,34 +162,15 @@ function startGame() {
   
 
   function hooversMoveRight() {
-    const movingRight = setInterval(() => {
+    setInterval(() => {
       removeHoovers()
       hoovers = hoovers.map(hoover => {
         const newHooverPositionRight = hoover + 1
-        // if (rightSide.includes(newHooverPositionRight)) {
-        //   console.log(newHooverPositionRight)
         cells[newHooverPositionRight].classList.add('hoover')
-        //   clearInterval(movingRight)
-        //   removeHoovers()
-        //   hooversMoveDown()
         return newHooverPositionRight
-        // } else {
-        //   cells[newHooverPositionRight].classList.add('hoover')
-        //   return newHooverPositionRight
-        // }
       })
     }, 1000)
   }
-
-  
-  // function hooversMoveDown() {
-  //     hoovers = hoovers.map(hoover => {
-  //       const newHooverPositionDown = hoover + 4
-  //       cells[newHooverPositionDown].classList.add('hoover')
-  //       return newHooverPositionDown
-  //     })
-  // }
-
 
   hooversMoveRight()
 
