@@ -33,7 +33,8 @@ Creating the classic Space Invaders Game, but themed on my dog Milo and his not 
 * Design logic for winning and visually display which player won.
 * Implement a wireframe of the project.
 * Timeframe: 7 days
-* Technologies used:
+
+## Technologies used:
 * HTML5
 * CSS3
 * JavaScript
@@ -161,16 +162,16 @@ I then more or less replicated this function with the hoovers, except I changed 
 
 ## Unsolved Problems
 
-* Hoover movements moving in the ‘Space Invader way’
+* Hoover movements moving in the ‘Space Invader way’.
 * The shooting can be quite quick. 
 * The shots from Milo and the Hoovers sometimes do not cancel each other out (one usually ‘wins’).
 
 ## Challenges
 
 This was my first project using JavaScript so I faced many challenges, of which the biggest were:
-* Hoover movement movement logic.
-* Collision detection logic.
-* Working with various set timers to create movement.
+* Hoover movement logic - Still unsolved, as I was only able to get them to move L to R. 
+* Collision detection logic - As mentioned, the shooting collission is not quite perfect and I still can't quite understand it. 
+* Working with various set timers to create movement - Especially when creating the logic for the Hoover shooting. 
 
 ## Wins
 
